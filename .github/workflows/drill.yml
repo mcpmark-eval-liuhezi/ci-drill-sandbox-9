@@ -1,0 +1,15 @@
+# drill.yml — Overnight CI incident drill workflow
+# Triggers on every push and can also be started manually (workflow_dispatch).
+# The single stuck-build job sleeps for 10 minutes to stand in for a wedged CI run.
+name: drill
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  stuck-build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Simulate stuck CI build (sleep 10 minutes)
+        run: sleep 630
